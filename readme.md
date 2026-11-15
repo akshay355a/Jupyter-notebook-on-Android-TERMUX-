@@ -43,12 +43,12 @@ pkg update -y && pkg upgrade -y
 
 ---
 
-## 🧱 Step 2: Install Essential Build Tools
+## 🧱 Step 2: Install Essential Build Tools and Native psutil
 
-You need these for compiling Python packages and C extensions.
+Install the Termux-packaged `python-psutil` first to avoid `pip` trying to build `psutil` from source in Android.
 
 ```bash
-pkg install -y python rust libffi clang make cmake git libbz2 zlib libjpeg-turbo
+pkg install -y python-psutil clang make libzmq libcrypt python rust libffi cmake git libbz2 zlib libjpeg-turbo
 ```
 
 ---
@@ -136,7 +136,7 @@ CFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" pip install --no-cache-dir --
 ## 📦 Step 7: Install Jupyter Notebook
 
 ```bash
-pip install --no-cache-dir jupyter
+pip install jupyter
 ```
 
 ---
@@ -179,6 +179,7 @@ This will give you a public HTTPS URL.
 | `held broken packages`   | outdated repo data          | `pkg clean && pkg update && pkg upgrade` |
 | `rust not found`         | missing Rust compiler       | `pkg install rust`                       |
 | `maturin build failed`   | missing setuptools or wheel | `pip install --upgrade setuptools wheel` |
+| `psutil build failed`    | pip source build on Termux  | `pkg install python-psutil`              |
 
 ---
 
