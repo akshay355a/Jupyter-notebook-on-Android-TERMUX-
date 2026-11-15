@@ -136,6 +136,7 @@ CFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" pip install --no-cache-dir --
 ## 📦 Step 7: Install Jupyter Notebook
 
 ```bash
+export ANDROID_API_LEVEL=$(getprop ro.build.version.sdk)
 pip install jupyter
 ```
 
@@ -180,6 +181,7 @@ This will give you a public HTTPS URL.
 | `rust not found`         | missing Rust compiler       | `pkg install rust`                       |
 | `maturin build failed`   | missing setuptools or wheel | `pip install --upgrade setuptools wheel` |
 | `psutil build failed`    | pip source build on Termux  | `pkg install python-psutil`              |
+| `Failed to determine Android API level` | Android API level not exported | `export ANDROID_API_LEVEL=$(getprop ro.build.version.sdk)` |
 
 ---
 
